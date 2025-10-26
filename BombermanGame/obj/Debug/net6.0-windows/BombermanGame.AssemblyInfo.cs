@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BombermanGame")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d8936151a6ec21e53e052dc831a3ad5cff1bdfae")]
 [assembly: System.Reflection.AssemblyProductAttribute("BombermanGame")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BombermanGame")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

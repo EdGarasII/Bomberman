@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\liuta\\BombermanGame\\BombermanGame.csproj": {}
+    "C:\\onedrive\\Dokumentai\\GitHub\\Bomberman\\BombermanGame\\BombermanGame.csproj": {}
   },
   "projects": {
-    "C:\\Users\\liuta\\BombermanGame\\BombermanGame.csproj": {
+    "C:\\onedrive\\Dokumentai\\GitHub\\Bomberman\\BombermanGame\\BombermanGame.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\liuta\\BombermanGame\\BombermanGame.csproj",
+        "projectUniqueName": "C:\\onedrive\\Dokumentai\\GitHub\\Bomberman\\BombermanGame\\BombermanGame.csproj",
         "projectName": "BombermanGame",
-        "projectPath": "C:\\Users\\liuta\\BombermanGame\\BombermanGame.csproj",
+        "projectPath": "C:\\onedrive\\Dokumentai\\GitHub\\Bomberman\\BombermanGame\\BombermanGame.csproj",
         "packagesPath": "C:\\Users\\liuta\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\liuta\\BombermanGame\\obj\\",
+        "outputPath": "C:\\onedrive\\Dokumentai\\GitHub\\Bomberman\\BombermanGame\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
