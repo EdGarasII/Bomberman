@@ -9,35 +9,23 @@ namespace BombermanGame.Managers
     {
         private int currentLevel;
         private AbstractEntityFactory entityFactory;
-        private LevelDirector director;
         
         public LevelManager()
         {
             currentLevel = 1;
             entityFactory = new StandardEntityFactory();
-            director = new LevelDirector();
         }
         
         public Tile[,] GenerateLevel(int width, int height)
         {
-            // Use EasyLevelBuilder for first few levels, then HardLevelBuilder
-            ILevelBuilder builder;
-            
-            if (currentLevel <= 3)
-            {
-                builder = new EasyLevelBuilder(width, height, entityFactory);
-            }
-            else
-            {
-                builder = new HardLevelBuilder(width, height, entityFactory);
-            }
+            var builder = new LevelBuilder(width, height, entityFactory);
             
             return builder
-                .BuildEmptyTiles()
-                .BuildBorderWalls()
-                .BuildBreakableWalls()
-                .BuildClearStartingPosition()
-                .GetResult();
+                .WithEmptyTiles()
+                .WithBorderWalls()
+                .WithBreakableWalls(0.7)
+                .WithClearStartingPosition(1, 1, 1)
+                .Build();
         }
         
         public void NextLevel()
