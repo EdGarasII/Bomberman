@@ -7,7 +7,6 @@ namespace BombermanGame.Bridges
 {
     // BRIDGE PATTERN - Separates rendering abstraction from implementation
     
-    // Implementor interface
     public interface IRenderer
     {
         void RenderPlayer(Graphics g, Player player);
@@ -18,7 +17,6 @@ namespace BombermanGame.Bridges
         void RenderPowerUp(Graphics g, PowerUp powerUp);
     }
     
-    // Basic renderer implementation
     public class BasicRenderer : IRenderer
     {
         public void RenderPlayer(Graphics g, Player player)
@@ -80,7 +78,6 @@ namespace BombermanGame.Bridges
         }
     }
     
-    // Advanced renderer implementation with enhanced graphics
     public class AdvancedRenderer : IRenderer
     {
         public void RenderPlayer(Graphics g, Player player)
@@ -113,7 +110,6 @@ namespace BombermanGame.Bridges
                 g.DrawEllipse(pen, bomb.X + 4, bomb.Y + 4, 24, 24);
             }
             
-            // Draw fuse
             int fuseLength = bomb.GetFuseLength();
             using (Pen fusePen = new Pen(Color.Orange, 3))
             {
@@ -135,7 +131,6 @@ namespace BombermanGame.Bridges
         
         public void RenderTile(Graphics g, Tile tile, int tileSize)
         {
-            // Tile.X and Tile.Y are already in pixel coordinates
             int pixelX = tile.X;
             int pixelY = tile.Y;
             
@@ -205,7 +200,6 @@ namespace BombermanGame.Bridges
         }
     }
     
-    // Abstraction - Rendering system
     public abstract class RenderingSystem
     {
         protected IRenderer renderer;
@@ -218,7 +212,6 @@ namespace BombermanGame.Bridges
         public abstract void RenderGame(Graphics g, Player player, List<Bomb> bombs, List<Explosion> explosions, Tile[,] board, int tileSize, List<PowerUp>? powerUps = null, Dictionary<string, Player>? remotePlayers = null, List<Enemy>? enemies = null);
     }
     
-    // Refined abstraction - Standard rendering
     public class StandardRenderingSystem : RenderingSystem
     {
         public StandardRenderingSystem(IRenderer renderer) : base(renderer)
@@ -227,7 +220,6 @@ namespace BombermanGame.Bridges
         
         public override void RenderGame(Graphics g, Player player, List<Bomb> bombs, List<Explosion> explosions, Tile[,] board, int tileSize, List<PowerUp>? powerUps = null, Dictionary<string, Player>? remotePlayers = null, List<Enemy>? enemies = null)
         {
-            // Render board
             for (int x = 0; x < board.GetLength(0); x++)
             {
                 for (int y = 0; y < board.GetLength(1); y++)
@@ -236,19 +228,16 @@ namespace BombermanGame.Bridges
                 }
             }
             
-            // Render bombs
             foreach (var bomb in bombs)
             {
                 renderer.RenderBomb(g, bomb);
             }
             
-            // Render explosions
             foreach (var explosion in explosions)
             {
                 renderer.RenderExplosion(g, explosion);
             }
             
-            // Render power-ups
             if (powerUps != null)
             {
                 foreach (var powerUp in powerUps)
@@ -257,7 +246,6 @@ namespace BombermanGame.Bridges
                 }
             }
             
-            // Render enemies
             if (enemies != null)
             {
                 foreach (var enemy in enemies)
@@ -269,7 +257,6 @@ namespace BombermanGame.Bridges
                 }
             }
             
-            // Render player
             if (player != null)
             {
                 renderer.RenderPlayer(g, player);
@@ -277,16 +264,15 @@ namespace BombermanGame.Bridges
         }
     }
     
-    // Refined abstraction - Enhanced rendering with effects
     public class EnhancedRenderingSystem : RenderingSystem
     {
         public EnhancedRenderingSystem(IRenderer renderer) : base(renderer)
         {
+            
         }
         
         public override void RenderGame(Graphics g, Player player, List<Bomb> bombs, List<Explosion> explosions, Tile[,] board, int tileSize, List<PowerUp>? powerUps = null, Dictionary<string, Player>? remotePlayers = null, List<Enemy>? enemies = null)
         {
-            // Render board
             for (int x = 0; x < board.GetLength(0); x++)
             {
                 for (int y = 0; y < board.GetLength(1); y++)
@@ -295,19 +281,16 @@ namespace BombermanGame.Bridges
                 }
             }
             
-            // Render bombs
             foreach (var bomb in bombs)
             {
                 renderer.RenderBomb(g, bomb);
             }
             
-            // Render explosions
             foreach (var explosion in explosions)
             {
                 renderer.RenderExplosion(g, explosion);
             }
             
-            // Render power-ups
             if (powerUps != null)
             {
                 foreach (var powerUp in powerUps)
@@ -316,7 +299,6 @@ namespace BombermanGame.Bridges
                 }
             }
             
-            // Render enemies
             if (enemies != null)
             {
                 foreach (var enemy in enemies)
@@ -328,7 +310,6 @@ namespace BombermanGame.Bridges
                 }
             }
             
-            // Render player
             if (player != null)
             {
                 renderer.RenderPlayer(g, player);
