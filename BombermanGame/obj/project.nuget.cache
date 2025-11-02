@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "An5z3BYG3NY=",
+  "dgSpecHash": "2ZF29n1iUDk=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Vartotojas\\Desktop\\KTU studijos\\7 semestras\\Objektinis programų projektavimas\\Bomberman\\Bomberman\\BombermanGame\\BombermanGame.csproj",
+  "projectFilePath": "C:\\onedrive\\Dokumentai\\GitHub\\Bomberman\\BombermanGame\\BombermanGame.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Vartotojas\\.nuget\\packages\\microsoft.win32.systemevents\\7.0.0\\microsoft.win32.systemevents.7.0.0.nupkg.sha512",
-    "C:\\Users\\Vartotojas\\.nuget\\packages\\system.drawing.common\\7.0.0\\system.drawing.common.7.0.0.nupkg.sha512"
+    "C:\\Users\\liuta\\.nuget\\packages\\microsoft.win32.systemevents\\7.0.0\\microsoft.win32.systemevents.7.0.0.nupkg.sha512",
+    "C:\\Users\\liuta\\.nuget\\packages\\system.drawing.common\\7.0.0\\system.drawing.common.7.0.0.nupkg.sha512"
   ],
   "logs": []
 }

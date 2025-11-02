@@ -23,6 +23,15 @@ namespace BombermanGame.Prototypes
             return null;
         }
         
+        public static GameEntity GetPrototype(string key)
+        {
+            if (prototypes.ContainsKey(key))
+            {
+                return prototypes[key];
+            }
+            return null;
+        }
+        
         public static bool HasPrototype(string key)
         {
             return prototypes.ContainsKey(key);

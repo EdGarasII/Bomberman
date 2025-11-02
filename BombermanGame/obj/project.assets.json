@@ -127,23 +127,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Vartotojas\\.nuget\\packages\\": {},
+    "C:\\Users\\liuta\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Vartotojas\\Desktop\\KTU studijos\\7 semestras\\Objektinis programų projektavimas\\Bomberman\\Bomberman\\BombermanGame\\BombermanGame.csproj",
+      "projectUniqueName": "C:\\onedrive\\Dokumentai\\GitHub\\Bomberman\\BombermanGame\\BombermanGame.csproj",
       "projectName": "BombermanGame",
-      "projectPath": "C:\\Users\\Vartotojas\\Desktop\\KTU studijos\\7 semestras\\Objektinis programų projektavimas\\Bomberman\\Bomberman\\BombermanGame\\BombermanGame.csproj",
-      "packagesPath": "C:\\Users\\Vartotojas\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Vartotojas\\Desktop\\KTU studijos\\7 semestras\\Objektinis programų projektavimas\\Bomberman\\Bomberman\\BombermanGame\\obj\\",
+      "projectPath": "C:\\onedrive\\Dokumentai\\GitHub\\Bomberman\\BombermanGame\\BombermanGame.csproj",
+      "packagesPath": "C:\\Users\\liuta\\.nuget\\packages\\",
+      "outputPath": "C:\\onedrive\\Dokumentai\\GitHub\\Bomberman\\BombermanGame\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Vartotojas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\liuta\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],

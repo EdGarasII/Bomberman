@@ -135,8 +135,9 @@ namespace BombermanGame.Bridges
         
         public void RenderTile(Graphics g, Tile tile, int tileSize)
         {
-            int pixelX = tile.X * tileSize;
-            int pixelY = tile.Y * tileSize;
+            // Tile.X and Tile.Y are already in pixel coordinates
+            int pixelX = tile.X;
+            int pixelY = tile.Y;
             
             switch (tile.Type)
             {
@@ -214,7 +215,7 @@ namespace BombermanGame.Bridges
             this.renderer = renderer;
         }
         
-        public abstract void RenderGame(Graphics g, Player player, List<Bomb> bombs, List<Explosion> explosions, Tile[,] board, int tileSize);
+        public abstract void RenderGame(Graphics g, Player player, List<Bomb> bombs, List<Explosion> explosions, Tile[,] board, int tileSize, List<PowerUp>? powerUps = null, Dictionary<string, Player>? remotePlayers = null, List<Enemy>? enemies = null);
     }
     
     // Refined abstraction - Standard rendering
@@ -224,7 +225,7 @@ namespace BombermanGame.Bridges
         {
         }
         
-        public override void RenderGame(Graphics g, Player player, List<Bomb> bombs, List<Explosion> explosions, Tile[,] board, int tileSize)
+        public override void RenderGame(Graphics g, Player player, List<Bomb> bombs, List<Explosion> explosions, Tile[,] board, int tileSize, List<PowerUp>? powerUps = null, Dictionary<string, Player>? remotePlayers = null, List<Enemy>? enemies = null)
         {
             // Render board
             for (int x = 0; x < board.GetLength(0); x++)
@@ -247,6 +248,27 @@ namespace BombermanGame.Bridges
                 renderer.RenderExplosion(g, explosion);
             }
             
+            // Render power-ups
+            if (powerUps != null)
+            {
+                foreach (var powerUp in powerUps)
+                {
+                    renderer.RenderPowerUp(g, powerUp);
+                }
+            }
+            
+            // Render enemies
+            if (enemies != null)
+            {
+                foreach (var enemy in enemies)
+                {
+                    if (enemy.IsActive)
+                    {
+                        renderer.RenderEnemy(g, enemy);
+                    }
+                }
+            }
+            
             // Render player
             if (player != null)
             {
@@ -262,11 +284,9 @@ namespace BombermanGame.Bridges
         {
         }
         
-        public override void RenderGame(Graphics g, Player player, List<Bomb> bombs, List<Explosion> explosions, Tile[,] board, int tileSize)
+        public override void RenderGame(Graphics g, Player player, List<Bomb> bombs, List<Explosion> explosions, Tile[,] board, int tileSize, List<PowerUp>? powerUps = null, Dictionary<string, Player>? remotePlayers = null, List<Enemy>? enemies = null)
         {
-            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-            
-            // Render with same logic but smoother
+            // Render board
             for (int x = 0; x < board.GetLength(0); x++)
             {
                 for (int y = 0; y < board.GetLength(1); y++)
@@ -275,16 +295,40 @@ namespace BombermanGame.Bridges
                 }
             }
             
+            // Render bombs
             foreach (var bomb in bombs)
             {
                 renderer.RenderBomb(g, bomb);
             }
             
+            // Render explosions
             foreach (var explosion in explosions)
             {
                 renderer.RenderExplosion(g, explosion);
             }
             
+            // Render power-ups
+            if (powerUps != null)
+            {
+                foreach (var powerUp in powerUps)
+                {
+                    renderer.RenderPowerUp(g, powerUp);
+                }
+            }
+            
+            // Render enemies
+            if (enemies != null)
+            {
+                foreach (var enemy in enemies)
+                {
+                    if (enemy.IsActive)
+                    {
+                        renderer.RenderEnemy(g, enemy);
+                    }
+                }
+            }
+            
+            // Render player
             if (player != null)
             {
                 renderer.RenderPlayer(g, player);

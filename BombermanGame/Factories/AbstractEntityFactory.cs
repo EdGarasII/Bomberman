@@ -1,5 +1,6 @@
 using System;
 using BombermanGame.Entities;
+using BombermanGame.Patterns;
 
 namespace BombermanGame.Factories
 {
@@ -10,6 +11,8 @@ namespace BombermanGame.Factories
         public abstract Bomb CreateBomb(int x, int y, int range);
         public abstract Explosion CreateExplosion(int x, int y, int timer);
         public abstract Tile CreateTile(int x, int y, TileType type);
+        public abstract PowerUp CreatePowerUp(int x, int y, PowerUpType type);
+        public abstract Enemy CreateEnemy(int x, int y, IAIStrategy aiStrategy);
     }
     
     // Standard entity factory - normal game entities
@@ -33,6 +36,16 @@ namespace BombermanGame.Factories
         public override Tile CreateTile(int x, int y, TileType type)
         {
             return new Tile(x, y, type);
+        }
+        
+        public override PowerUp CreatePowerUp(int x, int y, PowerUpType type)
+        {
+            return new PowerUp(x, y, type);
+        }
+        
+        public override Enemy CreateEnemy(int x, int y, IAIStrategy aiStrategy)
+        {
+            return new Enemy(x, y, aiStrategy);
         }
     }
     
@@ -60,6 +73,16 @@ namespace BombermanGame.Factories
         public override Tile CreateTile(int x, int y, TileType type)
         {
             return new Tile(x, y, type);
+        }
+        
+        public override PowerUp CreatePowerUp(int x, int y, PowerUpType type)
+        {
+            return new PowerUp(x, y, type);
+        }
+        
+        public override Enemy CreateEnemy(int x, int y, IAIStrategy aiStrategy)
+        {
+            return new Enemy(x, y, aiStrategy);
         }
     }
 }

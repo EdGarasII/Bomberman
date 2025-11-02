@@ -14,7 +14,7 @@ namespace BombermanGame.Entities
         
         public override void Update()
         {
-            // Power-ups are static
+            
         }
         
         public override void Render(Graphics graphics)

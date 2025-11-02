@@ -12,14 +12,21 @@ namespace BombermanGame.Builders
         private int height;
         private AbstractEntityFactory entityFactory;
         private Random random;
+        private bool useDeterministicPattern = false;
         
-        public LevelBuilder(int width, int height, AbstractEntityFactory factory)
+        public LevelBuilder(int width, int height, AbstractEntityFactory factory, int? seed = null)
         {
             this.width = width;
             this.height = height;
             this.entityFactory = factory;
-            this.random = new Random();
+            this.random = seed.HasValue ? new Random(seed.Value) : new Random();
             this.board = new Tile[width, height];
+        }
+        
+        public LevelBuilder WithDeterministicPattern(bool useDeterministic = true)
+        {
+            useDeterministicPattern = useDeterministic;
+            return this;
         }
         
         public LevelBuilder WithEmptyTiles()
@@ -55,7 +62,21 @@ namespace BombermanGame.Builders
             {
                 for (int y = 2; y < height - 2; y += 2)
                 {
-                    if (random.NextDouble() < density)
+                    bool shouldPlaceWall;
+                    
+                    if (useDeterministicPattern)
+                    {
+                        // Deterministic pattern: place wall if (x+y) % 3 != 0
+                        // This ensures all clients generate the same map for multiplayer
+                        shouldPlaceWall = (x + y) % 3 != 0;
+                    }
+                    else
+                    {
+                        // Random pattern
+                        shouldPlaceWall = random.NextDouble() < density;
+                    }
+                    
+                    if (shouldPlaceWall)
                     {
                         board[x, y] = entityFactory.CreateTile(x, y, TileType.BreakableWall);
                     }
@@ -77,6 +98,17 @@ namespace BombermanGame.Builders
                         board[posX, posY] = entityFactory.CreateTile(posX, posY, TileType.Empty);
                     }
                 }
+            }
+            return this;
+        }
+        
+        public LevelBuilder WithClearStartingPositions(int[,] positions, int radius = 1)
+        {
+            for (int i = 0; i < positions.GetLength(0); i++)
+            {
+                int x = positions[i, 0];
+                int y = positions[i, 1];
+                WithClearStartingPosition(x, y, radius);
             }
             return this;
         }

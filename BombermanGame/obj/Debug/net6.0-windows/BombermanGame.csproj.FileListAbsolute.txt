@@ -39,3 +39,24 @@ C:\Users\Vartotojas\Desktop\KTU studijos\7 semestras\Objektinis programų projek
 C:\Users\Vartotojas\Desktop\KTU studijos\7 semestras\Objektinis programų projektavimas\Bomberman\Bomberman\BombermanGame\obj\Debug\net6.0-windows\BombermanGame.pdb
 C:\Users\Vartotojas\Desktop\KTU studijos\7 semestras\Objektinis programų projektavimas\Bomberman\Bomberman\BombermanGame\obj\Debug\net6.0-windows\BombermanGame.genruntimeconfig.cache
 C:\Users\Vartotojas\Desktop\KTU studijos\7 semestras\Objektinis programų projektavimas\Bomberman\Bomberman\BombermanGame\obj\Debug\net6.0-windows\ref\BombermanGame.dll
+C:\onedrive\Dokumentai\GitHub\Bomberman\BombermanGame\bin\Debug\net6.0-windows\BombermanGame.exe
+C:\onedrive\Dokumentai\GitHub\Bomberman\BombermanGame\bin\Debug\net6.0-windows\BombermanGame.deps.json
+C:\onedrive\Dokumentai\GitHub\Bomberman\BombermanGame\bin\Debug\net6.0-windows\BombermanGame.runtimeconfig.json
+C:\onedrive\Dokumentai\GitHub\Bomberman\BombermanGame\bin\Debug\net6.0-windows\BombermanGame.dll
+C:\onedrive\Dokumentai\GitHub\Bomberman\BombermanGame\bin\Debug\net6.0-windows\BombermanGame.pdb
+C:\onedrive\Dokumentai\GitHub\Bomberman\BombermanGame\bin\Debug\net6.0-windows\Microsoft.Win32.SystemEvents.dll
+C:\onedrive\Dokumentai\GitHub\Bomberman\BombermanGame\bin\Debug\net6.0-windows\System.Drawing.Common.dll
+C:\onedrive\Dokumentai\GitHub\Bomberman\BombermanGame\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\onedrive\Dokumentai\GitHub\Bomberman\BombermanGame\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+C:\onedrive\Dokumentai\GitHub\Bomberman\BombermanGame\obj\Debug\net6.0-windows\BombermanGame.csproj.AssemblyReference.cache
+C:\onedrive\Dokumentai\GitHub\Bomberman\BombermanGame\obj\Debug\net6.0-windows\BombermanGame.GeneratedMSBuildEditorConfig.editorconfig
+C:\onedrive\Dokumentai\GitHub\Bomberman\BombermanGame\obj\Debug\net6.0-windows\BombermanGame.AssemblyInfoInputs.cache
+C:\onedrive\Dokumentai\GitHub\Bomberman\BombermanGame\obj\Debug\net6.0-windows\BombermanGame.AssemblyInfo.cs
+C:\onedrive\Dokumentai\GitHub\Bomberman\BombermanGame\obj\Debug\net6.0-windows\BombermanGame.csproj.CoreCompileInputs.cache
+C:\onedrive\Dokumentai\GitHub\Bomberman\BombermanGame\obj\Debug\net6.0-windows\BombermanGame.sourcelink.json
+C:\onedrive\Dokumentai\GitHub\Bomberman\BombermanGame\obj\Debug\net6.0-windows\Bomberma.974165B5.Up2Date
+C:\onedrive\Dokumentai\GitHub\Bomberman\BombermanGame\obj\Debug\net6.0-windows\BombermanGame.dll
+C:\onedrive\Dokumentai\GitHub\Bomberman\BombermanGame\obj\Debug\net6.0-windows\refint\BombermanGame.dll
+C:\onedrive\Dokumentai\GitHub\Bomberman\BombermanGame\obj\Debug\net6.0-windows\BombermanGame.pdb
+C:\onedrive\Dokumentai\GitHub\Bomberman\BombermanGame\obj\Debug\net6.0-windows\BombermanGame.genruntimeconfig.cache
+C:\onedrive\Dokumentai\GitHub\Bomberman\BombermanGame\obj\Debug\net6.0-windows\ref\BombermanGame.dll

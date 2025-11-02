@@ -14,7 +14,7 @@ namespace BombermanGame.Managers
         public RenderingManager(bool useAdvancedRenderer = true)
         {
             IRenderer renderer = useAdvancedRenderer ? new AdvancedRenderer() : new BasicRenderer();
-            renderingSystem = new StandardRenderingSystem(renderer);
+            renderingSystem = useAdvancedRenderer ? new EnhancedRenderingSystem(renderer) : new StandardRenderingSystem(renderer);
         }
         
         public void SetRenderingSystem(RenderingSystem system)
@@ -22,11 +22,11 @@ namespace BombermanGame.Managers
             renderingSystem = system;
         }
         
-        public void Render(Graphics g, Player player, List<Bomb> bombs, List<Explosion> explosions, Tile[,] board)
+        public void Render(Graphics g, Player player, List<Bomb> bombs, List<Explosion> explosions, Tile[,] board, List<PowerUp>? powerUps = null, Dictionary<string, Player>? remotePlayers = null, List<Enemy>? enemies = null)
         {
             if (renderingSystem != null)
             {
-                renderingSystem.RenderGame(g, player, bombs, explosions, board, TILE_SIZE);
+                renderingSystem.RenderGame(g, player, bombs, explosions, board, TILE_SIZE, powerUps, remotePlayers, enemies);
             }
         }
     }
