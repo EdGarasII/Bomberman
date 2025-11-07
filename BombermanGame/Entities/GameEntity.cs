@@ -25,6 +25,7 @@ namespace BombermanGame.Entities
         
         public virtual bool CollidesWith(GameEntity other)
         {
+            // Simple rectangle intersection
             Rectangle thisRect = new Rectangle(X, Y, Size, Size);
             Rectangle otherRect = new Rectangle(other.X, other.Y, other.Size, other.Size);
             return thisRect.IntersectsWith(otherRect);

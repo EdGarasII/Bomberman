@@ -2,15 +2,20 @@ using System;
 using BombermanGame.Entities;
 using BombermanGame.Factories;
 using BombermanGame.Decorators;
+using BombermanGame.Bridges;
 
 namespace BombermanGame.Managers
 {
     public class PlayerManager
     {
         private Player player;
+        private PowerUpApplicator powerUpApplicator; // BRIDGE PATTERN
         
         public PlayerManager()
         {
+            // BRIDGE PATTERN - Initialize with validated applicator and direct modification effect
+            IPowerUpEffect effect = new DirectModificationEffect();
+            powerUpApplicator = new ValidatedPowerUpApplicator(effect);
         }
         
         public void CreatePlayer(int x, int y)
@@ -24,8 +29,17 @@ namespace BombermanGame.Managers
         {
             if (player == null) return;
             
+            // BRIDGE PATTERN - Use bridge pattern for power-up application
+            powerUpApplicator.ApplyPowerUp(player, type);
+            
+            // Also keep decorator pattern for compatibility
             var decorator = PowerUpDecoratorFactory.CreateDecorator(type, player);
             decorator?.ApplyPowerUp();
+        }
+        
+        public void SetPowerUpApplicator(PowerUpApplicator applicator)
+        {
+            powerUpApplicator = applicator ?? throw new ArgumentNullException(nameof(applicator));
         }
         
         public bool IsValidPosition(int x, int y, int size, Tile[,] board, int tileSize)

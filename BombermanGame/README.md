@@ -55,10 +55,18 @@ A complete Bomberman game implementation in C# using System.Drawing and implemen
 - Single entry point for game operations
 
 ### 11. **Bridge Pattern**
-- `RenderingSystem` - Separates rendering logic from implementation
-- `IRenderer` - Rendering interface
-- `BasicRenderer`, `AdvancedRenderer`
-- `StandardRenderingSystem`, `EnhancedRenderingSystem`
+- **Collision Detection Bridge**: `CollisionDetector` - Abstraction that holds reference to `ICollisionAlgorithm` implementation
+  - `StandardCollisionDetector`, `OptimizedCollisionDetector` - Refined abstractions (≥2)
+  - `ICollisionAlgorithm` - Implementor interface
+  - `AABBCollisionAlgorithm`, `CircleCollisionAlgorithm` - Concrete implementations (≥2)
+- **Power-Up Application Bridge**: `PowerUpApplicator` - Abstraction that holds reference to `IPowerUpEffect` implementation
+  - `ImmediatePowerUpApplicator`, `ValidatedPowerUpApplicator` - Refined abstractions (≥2)
+  - `IPowerUpEffect` - Implementor interface
+  - `DirectModificationEffect`, `BuffBasedEffect` - Concrete implementations (≥2)
+- Both abstraction and implementation can vary independently
+- Example: Collision detector can use either AABB or Circle algorithm, with either standard or optimized detection strategy
+- Example: Power-up applicator can use either direct modification or buff-based effect, with either immediate or validated application strategy
+- See `Bridges/PatternDifferences.md` for detailed explanation of Bridge vs Strategy vs Adapter
 
 ## Project Structure
 
@@ -97,7 +105,9 @@ BombermanGame/
 ├── Facades/
 │   └── GameFacade.cs           # Facade pattern
 ├── Bridges/
-│   └── RenderingBridge.cs      # Bridge pattern
+│   ├── CollisionBridge.cs           # Bridge pattern (collision detection system)
+│   ├── PowerUpApplicationBridge.cs # Bridge pattern (power-up application system)
+│   └── PatternDifferences.md       # Explanation of Bridge vs Strategy vs Adapter
 ├── Managers/
 │   ├── InputManager.cs
 │   ├── RenderingManager.cs

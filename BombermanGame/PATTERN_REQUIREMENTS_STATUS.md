@@ -108,16 +108,28 @@
 - **Requirement**: ≥2 clients, ≥3 subsystems ✓ (Has 3 clients, 7 subsystems)
 
 ### l. **Bridge** - 2+ abstractions, 2+ implementations ✅
-- **Location**: `Bridges/RenderingBridge.cs`
-- **Abstraction**: RenderingSystem (abstract)
-- **Refined Abstractions** (≥2):
-  1. StandardRenderingSystem
-  2. EnhancedRenderingSystem
-- **Implementor**: IRenderer (interface)
-- **Concrete Implementations** (≥2):
-  1. BasicRenderer
-  2. AdvancedRenderer
-- **Requirement**: ≥2 abstractions, ≥2 implementations ✓
+- **Location**: `Bridges/CollisionBridge.cs`, `Bridges/PowerUpApplicationBridge.cs`, `Bridges/PatternDifferences.md`
+- **Bridge Pattern 1: Collision Detection**
+  - **Abstraction**: CollisionDetector (abstract class)
+  - **Refined Abstractions** (≥2):
+    1. StandardCollisionDetector - Standard collision detection (checks all entities)
+    2. OptimizedCollisionDetector - Optimized collision detection (uses spatial partitioning for performance)
+  - **Implementor**: ICollisionAlgorithm (interface)
+  - **Concrete Implementations** (≥2):
+    1. AABBCollisionAlgorithm - Axis-Aligned Bounding Box collision detection
+    2. CircleCollisionAlgorithm - Circle-based collision detection
+- **Bridge Pattern 2: Power-Up Application**
+  - **Abstraction**: PowerUpApplicator (abstract class)
+  - **Refined Abstractions** (≥2):
+    1. ImmediatePowerUpApplicator - Applies power-ups immediately without validation
+    2. ValidatedPowerUpApplicator - Validates power-ups before applying (prevents excessive power-ups)
+  - **Implementor**: IPowerUpEffect (interface)
+  - **Concrete Implementations** (≥2):
+    1. DirectModificationEffect - Directly modifies player stats immediately
+    2. BuffBasedEffect - Tracks power-ups separately, supports temporary effects
+- **Requirement**: ≥2 abstractions, ≥2 implementations ✓ (2 bridge patterns, each with 2 abstractions and 2 implementations)
+- **Pattern Differences**: See `Bridges/PatternDifferences.md` for detailed explanation of Bridge vs Strategy vs Adapter
+- **Combinations**: Both abstractions can use either implementation independently (4 possible combinations per bridge pattern)
 
 ## 📊 Summary
 
@@ -134,7 +146,7 @@
 | Decorator | ≥3 decoration levels | ✅ | PowerUpDecoratorStack demonstrates 3 levels |
 | Command | undo() capability | ✅ | CommandInvoker with undo/redo |
 | Façade | ≥2 clients, ≥3 subsystems | ✅ | 3 clients, 7 subsystems |
-| Bridge | ≥2 abstractions, ≥2 implementations | ✅ | 2 abstractions, 2 implementations |
+| Bridge | ≥2 abstractions, ≥2 implementations | ✅ | 2 bridge patterns: Collision (2 abstractions, 2 implementations) + Power-Up Application (2 abstractions, 2 implementations) + PatternDifferences.md |
 
 **Total: 12/12 (100%) ✅**
 
@@ -156,21 +168,24 @@
 
 ## 🔍 Pattern Differences (Bridge vs Strategy vs Adapter)
 
+**Detailed explanation**: See `Bridges/PatternDifferences.md` for comprehensive comparison with code examples.
+
 ### Bridge
-- **Purpose**: Separate abstraction from implementation
-- **Structure**: Abstraction holds reference to implementor
-- **Example**: RenderingSystem (abstraction) uses IRenderer (implementation)
-- **Flexibility**: Both abstraction and implementation can vary independently
+- **Purpose**: Separate abstraction from implementation, allowing both to vary independently
+- **Structure**: Abstraction (CollisionDetector) holds reference to Implementor (ICollisionAlgorithm)
+- **Example**: `StandardCollisionDetector` can use either `AABBCollisionAlgorithm` or `CircleCollisionAlgorithm`
+- **Example**: `OptimizedCollisionDetector` can use either `AABBCollisionAlgorithm` or `CircleCollisionAlgorithm`
+- **Flexibility**: Both abstraction hierarchy and implementation hierarchy can grow independently
 
 ### Strategy  
-- **Purpose**: Encapsulate algorithms and make them interchangeable
-- **Structure**: Context uses strategy interface
-- **Example**: Enemy uses IAIStrategy for different behaviors
-- **Flexibility**: Algorithm can be changed at runtime
+- **Purpose**: Encapsulate algorithms and make them interchangeable at runtime
+- **Structure**: Context (Enemy) uses strategy interface (IAIStrategy)
+- **Example**: Enemy can switch between `BasicAIStrategy` and `AdvancedAIStrategy` at runtime
+- **Flexibility**: Algorithm can be changed at runtime, context structure stays same
 
 ### Adapter
 - **Purpose**: Convert one interface to another
 - **Structure**: Adapter wraps adaptee and implements target interface
-- **Example**: KeyboardInputAdapter converts RawKeyboardInput (12 methods) to IInputAdapter (6 methods)
-- **Flexibility**: Makes incompatible interfaces work together
+- **Example**: `KeyboardInputAdapter` converts `RawKeyboardInput` (12 methods) to `IInputAdapter` (6 methods)
+- **Flexibility**: Interface conversion, not variation - makes incompatible interfaces work together
 

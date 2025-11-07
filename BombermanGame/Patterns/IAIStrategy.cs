@@ -20,7 +20,7 @@ namespace BombermanGame.Patterns
         {
             directionTimer++;
             
-            if (directionTimer > 60) // Change direction every second
+            if (directionTimer > 60) 
             {
                 currentDirection = random.Next(4);
                 directionTimer = 0;
@@ -36,7 +36,7 @@ namespace BombermanGame.Patterns
         }
     }
     
-    // Advanced AI - Chase player
+    // Complex AI - Chase player
     public class AdvancedAIStrategy : IAIStrategy
     {
         private Player targetPlayer;
