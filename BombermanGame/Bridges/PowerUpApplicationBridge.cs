@@ -61,18 +61,18 @@ namespace BombermanGame.Bridges
     
     public class BuffBasedEffect : IPowerUpEffect
     {
-        private System.Collections.Generic.Dictionary<Player, System.Collections.Generic.Dictionary<PowerUpType, int>> playerBuffs;
+        private Dictionary<Player, Dictionary<PowerUpType, int>> playerBuffs;
         
         public BuffBasedEffect()
         {
-            playerBuffs = new System.Collections.Generic.Dictionary<Player, System.Collections.Generic.Dictionary<PowerUpType, int>>();
+            playerBuffs = new Dictionary<Player, Dictionary<PowerUpType, int>>();
         }
         
         public void ApplyEffect(Player player, PowerUpType type)
         {
             if (!playerBuffs.ContainsKey(player))
             {
-                playerBuffs[player] = new System.Collections.Generic.Dictionary<PowerUpType, int>();
+                playerBuffs[player] = new Dictionary<PowerUpType, int>();
             }
             
             if (!playerBuffs[player].ContainsKey(type))
@@ -191,18 +191,18 @@ namespace BombermanGame.Bridges
     // Refined Abstraction 2: Validated applicator
     public class ValidatedPowerUpApplicator : PowerUpApplicator
     {
-        private System.Collections.Generic.HashSet<System.Tuple<Player, PowerUpType>> appliedPowerUps;
+        private HashSet<Tuple<Player, PowerUpType>> appliedPowerUps;
         
         public ValidatedPowerUpApplicator(IPowerUpEffect effect) : base(effect)
         {
-            appliedPowerUps = new System.Collections.Generic.HashSet<System.Tuple<Player, PowerUpType>>();
+            appliedPowerUps = new HashSet<Tuple<Player, PowerUpType>>();
         }
         
         public override void ApplyPowerUp(Player player, PowerUpType type)
         {
             if (player == null) return;
             
-            var key = System.Tuple.Create(player, type);
+            var key = Tuple.Create(player, type);
             
             // Validation for power-up application
             if (CanApplyPowerUp(player, type))
@@ -216,7 +216,7 @@ namespace BombermanGame.Bridges
         {
             if (player == null) return;
             
-            var key = System.Tuple.Create(player, type);
+            var key = Tuple.Create(player, type);
             if (appliedPowerUps.Contains(key))
             {
                 powerUpEffect.RemoveEffect(player, type);
@@ -228,7 +228,7 @@ namespace BombermanGame.Bridges
         {
             if (player == null) return false;
             
-            var key = System.Tuple.Create(player, type);
+            var key = Tuple.Create(player, type);
             return appliedPowerUps.Contains(key) && powerUpEffect.IsEffectActive(player, type);
         }
         
