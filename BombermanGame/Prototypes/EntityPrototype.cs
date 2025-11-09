@@ -1,65 +1,39 @@
 using System;
 using System.Runtime.CompilerServices;
 using BombermanGame.Entities;
+using BombermanGame.Patterns;
 
 namespace BombermanGame.Prototypes
 {
     // PROTOTYPE PATTERN - Simple demonstration of shallow vs deep copy
     public class EntityPrototype
     {
-        // PROTOTYPE PATTERN - Demonstration of shallow vs deep copy with memory addresses
-        public static void DemonstrateShallowVsDeepCopy(GameEntity original)
+        public static void DemonstrateShallowVsDeepCopy(Enemy? original = null)
         {
             if (original == null)
             {
-                Console.WriteLine("Cannot demonstrate: original is null.");
-                return;
+                original = new Enemy(0, 0, new BasicAIStrategy());
             }
             
-            Console.WriteLine("\n=== PROTOTYPE PATTERN: Shallow vs Deep Copy Demonstration ===");
-            Console.WriteLine($"Original object hash: {RuntimeHelpers.GetHashCode(original)}");
+            Console.WriteLine("\n--- SHALLOW COPY ---\n");
+            Console.WriteLine($"Original object: {RuntimeHelpers.GetHashCode(original)}\n");
             
-            // Shallow copy (Clone method - uses MemberwiseClone)
             var shallowCopy = original.Clone();
-            if (shallowCopy != null)
-            {
-                Console.WriteLine($"\n--- SHALLOW COPY (Clone() - MemberwiseClone) ---");
-                Console.WriteLine($"Shallow copy object hash: {RuntimeHelpers.GetHashCode(shallowCopy)}");
-                Console.WriteLine($"Original object hash: {RuntimeHelpers.GetHashCode(original)}");
-                Console.WriteLine($"Different memory addresses: {RuntimeHelpers.GetHashCode(original) != RuntimeHelpers.GetHashCode(shallowCopy)}");
-                Console.WriteLine($"Original X: {original.X}, Shallow Copy X: {shallowCopy.X}");
-                
-                // Modify shallow copy - for value types, original is NOT affected (MemberwiseClone copies values)
-                // But for reference types, they would share references
-                int originalX = original.X;
-                shallowCopy.X = 888;
-                Console.WriteLine($"After modifying shallow copy X to 888:");
-                Console.WriteLine($"Original X: {original.X} (unchanged - value type)");
-                Console.WriteLine($"Shallow Copy X: {shallowCopy.X} (modified)");
-                Console.WriteLine($"Memory addresses are different: {RuntimeHelpers.GetHashCode(original) != RuntimeHelpers.GetHashCode(shallowCopy)}");
-                
-                // Restore original
-                original.X = originalX;
-            }
+            Console.WriteLine($"Shallow copy object: {RuntimeHelpers.GetHashCode(shallowCopy)}\n");
+            Console.WriteLine($"Original.Speed: {original.Speed}\n");
+            Console.WriteLine($"ShallowCopy.Speed: {shallowCopy.Speed}\n");
+            Console.WriteLine($"Original.AIStrategy: {RuntimeHelpers.GetHashCode(original.AIStrategy)}\n");
+            Console.WriteLine($"ShallowCopy.AIStrategy: {RuntimeHelpers.GetHashCode(shallowCopy.AIStrategy)}\n");
             
-            // Deep copy (DeepClone method)
+            Console.WriteLine("--- DEEP COPY ---\n");
+            Console.WriteLine($"Original object: {RuntimeHelpers.GetHashCode(original)}\n");
+            
             var deepCopy = original.DeepClone();
-            if (deepCopy != null)
-            {
-                Console.WriteLine($"\n--- DEEP COPY (DeepClone()) ---");
-                Console.WriteLine($"Deep copy object hash: {RuntimeHelpers.GetHashCode(deepCopy)}");
-                Console.WriteLine($"Original X: {original.X}, Deep Copy X: {deepCopy.X}");
-                
-                // Modify deep copy - original should not be affected
-                deepCopy.X = 999;
-                Console.WriteLine($"After modifying deep copy X to 999:");
-                Console.WriteLine($"Original X: {original.X} (unchanged)");
-                Console.WriteLine($"Deep Copy X: {deepCopy.X} (modified)");
-                Console.WriteLine($"Memory addresses are different: {RuntimeHelpers.GetHashCode(original) != RuntimeHelpers.GetHashCode(deepCopy)}");
-            }
-            
-            Console.WriteLine("=== End Demonstration ===\n");
+            Console.WriteLine($"Deep copy object: {RuntimeHelpers.GetHashCode(deepCopy)}\n");
+            Console.WriteLine($"Original.Speed: {original.Speed}\n");
+            Console.WriteLine($"DeepCopy.Speed: {deepCopy.Speed}\n");
+            Console.WriteLine($"Original.AIStrategy: {RuntimeHelpers.GetHashCode(original.AIStrategy)}\n");
+            Console.WriteLine($"DeepCopy.AIStrategy: {RuntimeHelpers.GetHashCode(deepCopy.AIStrategy)}\n");
         }
     }
 }
-

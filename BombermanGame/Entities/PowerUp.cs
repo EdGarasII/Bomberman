@@ -37,10 +37,6 @@ namespace BombermanGame.Entities
             }
         }
         
-        public override GameEntity Clone()
-        {
-            return new PowerUp(X, Y, Type);
-        }
     }
     
     public enum PowerUpType
