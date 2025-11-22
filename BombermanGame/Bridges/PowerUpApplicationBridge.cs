@@ -202,13 +202,16 @@ namespace BombermanGame.Bridges
         {
             if (player == null) return;
             
-            var key = Tuple.Create(player, type);
-            
-            // Validation for power-up application
+            // Validation for power-up application - allow stacking if under limit
             if (CanApplyPowerUp(player, type))
             {
                 powerUpEffect.ApplyEffect(player, type);
-                appliedPowerUps.Add(key);
+                // Track that this power-up was applied (for removal later if needed)
+                var key = Tuple.Create(player, type);
+                if (!appliedPowerUps.Contains(key))
+                {
+                    appliedPowerUps.Add(key);
+                }
             }
         }
         

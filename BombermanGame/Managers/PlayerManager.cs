@@ -25,16 +25,15 @@ namespace BombermanGame.Managers
         
         public Player GetPlayer() => player;
         
-        public void ApplyPowerUp(PowerUpType type)
+        public void ApplyPowerUp(Player targetPlayer, PowerUpType type)
         {
-            if (player == null) return;
+            if (targetPlayer == null) return;
             
             // BRIDGE PATTERN - Use bridge pattern for power-up application
-            powerUpApplicator.ApplyPowerUp(player, type);
+            powerUpApplicator.ApplyPowerUp(targetPlayer, type);
             
-            // Also keep decorator pattern for compatibility
-            var decorator = PowerUpDecoratorFactory.CreateDecorator(type, player);
-            decorator?.ApplyPowerUp();
+            // Note: Decorator pattern is handled in GameForm.CheckPowerUpCollection()
+            // to avoid double application
         }
         
         public void SetPowerUpApplicator(PowerUpApplicator applicator)

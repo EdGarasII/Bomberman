@@ -275,24 +275,27 @@ namespace BombermanGame.Network
         public void HandleJoinGame(string clientId, string playerName)
         {
             // Create player at different starting positions
-            int startX = (players.Count % 4) switch
+            // Use players.Count BEFORE adding to get the correct index
+            int spawnIndex = players.Count;
+            int startX = (spawnIndex % 4) switch
             {
-                0 => 1 * TILE_SIZE,
-                1 => (BOARD_WIDTH - 2) * TILE_SIZE,
-                2 => 1 * TILE_SIZE,
-                3 => (BOARD_WIDTH - 2) * TILE_SIZE,
+                0 => 1 * TILE_SIZE,                    // Top-left corner
+                1 => (BOARD_WIDTH - 2) * TILE_SIZE,    // Top-right corner
+                2 => 1 * TILE_SIZE,                    // Bottom-left corner
+                3 => (BOARD_WIDTH - 2) * TILE_SIZE,    // Bottom-right corner
                 _ => 1 * TILE_SIZE
             };
             
-            int startY = (players.Count % 4) switch
+            int startY = (spawnIndex % 4) switch
             {
-                0 => 1 * TILE_SIZE,
-                1 => 1 * TILE_SIZE,
-                2 => (BOARD_HEIGHT - 2) * TILE_SIZE,
-                3 => (BOARD_HEIGHT - 2) * TILE_SIZE,
+                0 => 1 * TILE_SIZE,                    // Top-left corner
+                1 => 1 * TILE_SIZE,                    // Top-right corner
+                2 => (BOARD_HEIGHT - 2) * TILE_SIZE,   // Bottom-left corner
+                3 => (BOARD_HEIGHT - 2) * TILE_SIZE,   // Bottom-right corner
                 _ => 1 * TILE_SIZE
             };
             
+            Console.WriteLine($"Creating player {clientId} at spawn index {spawnIndex}, position ({startX}, {startY})");
             var player = EntityFactory.CreatePlayer(startX, startY);
             players[clientId] = player;
             
@@ -317,6 +320,10 @@ namespace BombermanGame.Network
             };
             // Note: We broadcast to all, but the joining client gets it twice - that's okay
             BroadcastToAll(broadcastMsg);
+            
+            // Immediately send game state to the new player so they see their spawn position
+            Console.WriteLine($"Sending initial game state to new player {clientId} at ({startX}, {startY})");
+            BroadcastGameState();
             
             OnPlayerJoined?.Invoke(playerName);
         }
