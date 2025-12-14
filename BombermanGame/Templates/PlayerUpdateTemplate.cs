@@ -27,7 +27,7 @@ namespace BombermanGame.Templates
             if (entity is Player player)
             {
                 // Update player-specific logic
-                // Bomb recharging is handled in Player.Update(), but we can add additional logic here
+                player.Update(); // This handles bomb recharging and other player logic
             }
         }
         

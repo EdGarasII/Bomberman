@@ -5,7 +5,7 @@ using BombermanGame.Entities;
 
 namespace BombermanGame.Flyweights
 {
-    // FLYWEIGHT PATTERN - Intrinsic state (shared)
+    // FLYWEIGHT PATTERN - Intrinsic state
     public class TileFlyweight
     {
         public TileType Type { get; }
@@ -73,17 +73,18 @@ namespace BombermanGame.Flyweights
         public bool IsBreakable => flyweight.IsBreakable;
     }
     
-    // FLYWEIGHT PATTERN - Performance and memory measurement
+    // FLYWEIGHT PATTERN TEST
     public class FlyweightPerformanceTest
     {
-        public static void RunPerformanceTest()
+        public static string RunPerformanceTest()
         {
-            Console.WriteLine("=== FLYWEIGHT PATTERN PERFORMANCE TEST ===\n");
+            var report = new System.Text.StringBuilder();
+            report.AppendLine("=== FLYWEIGHT PATTERN PERFORMANCE TEST ===\n");
             
             const int tileCount = 10000;
             
-            // Test WITHOUT Flyweight (creating full Tile objects)
-            Console.WriteLine("--- Test WITHOUT Flyweight (Full Objects) ---");
+            // Test WITHOUT
+            report.AppendLine("--- Test WITHOUT Flyweight (Full Objects) ---");
             var stopwatch1 = Stopwatch.StartNew();
             var memoryBefore1 = GC.GetTotalMemory(false);
             
@@ -98,12 +99,12 @@ namespace BombermanGame.Flyweights
             var memoryAfter1 = GC.GetTotalMemory(false);
             var memoryUsed1 = memoryAfter1 - memoryBefore1;
             
-            Console.WriteLine($"Time: {stopwatch1.ElapsedMilliseconds} ms");
-            Console.WriteLine($"Memory used: {memoryUsed1 / 1024} KB");
-            Console.WriteLine($"Objects created: {tileCount}\n");
+            report.AppendLine($"Time: {stopwatch1.ElapsedMilliseconds} ms");
+            report.AppendLine($"Memory used: {memoryUsed1 / 1024} KB");
+            report.AppendLine($"Objects created: {tileCount}\n");
             
-            // Test WITH Flyweight (using shared state)
-            Console.WriteLine("--- Test WITH Flyweight (Shared State) ---");
+            // Test WITH
+            report.AppendLine("--- Test WITH Flyweight (Shared State) ---");
             var stopwatch2 = Stopwatch.StartNew();
             var memoryBefore2 = GC.GetTotalMemory(false);
             
@@ -118,19 +119,22 @@ namespace BombermanGame.Flyweights
             var memoryAfter2 = GC.GetTotalMemory(false);
             var memoryUsed2 = memoryAfter2 - memoryBefore2;
             
-            Console.WriteLine($"Time: {stopwatch2.ElapsedMilliseconds} ms");
-            Console.WriteLine($"Memory used: {memoryUsed2 / 1024} KB");
-            Console.WriteLine($"Objects created: {tileCount}");
-            Console.WriteLine($"Flyweight objects: {TileFlyweightFactory.GetFlyweightCount()}\n");
+            report.AppendLine($"Time: {stopwatch2.ElapsedMilliseconds} ms");
+            report.AppendLine($"Memory used: {memoryUsed2 / 1024} KB");
+            report.AppendLine($"Objects created: {tileCount}");
+            report.AppendLine($"Flyweight objects: {TileFlyweightFactory.GetFlyweightCount()}\n");
             
             // Results comparison
-            Console.WriteLine("--- Performance Comparison ---");
+            report.AppendLine("--- Performance Comparison ---");
             var timeImprovement = ((double)(stopwatch1.ElapsedMilliseconds - stopwatch2.ElapsedMilliseconds) / stopwatch1.ElapsedMilliseconds) * 100;
             var memoryImprovement = ((double)(memoryUsed1 - memoryUsed2) / memoryUsed1) * 100;
             
-            Console.WriteLine($"Time improvement: {timeImprovement:F2}%");
-            Console.WriteLine($"Memory improvement: {memoryImprovement:F2}%");
-            Console.WriteLine($"Memory saved: {(memoryUsed1 - memoryUsed2) / 1024} KB");
+            report.AppendLine($"Time improvement: {timeImprovement:F2}%");
+            report.AppendLine($"Memory improvement: {memoryImprovement:F2}%");
+            report.AppendLine($"Memory saved: {(memoryUsed1 - memoryUsed2) / 1024} KB");
+            
+            Console.WriteLine(report.ToString());
+            return report.ToString();
         }
     }
 }

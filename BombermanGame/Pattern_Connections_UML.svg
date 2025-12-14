@@ -1,0 +1,663 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="3200" height="2800" viewBox="0 0 3200 2800">
+<style>
+    .class-box { fill: #FFFFFF; stroke: #6B46C1; stroke-width: 2.5; rx: 8; ry: 8; }
+    .interface-box { fill: #FFF9E6; stroke: #D97706; stroke-width: 2.5; stroke-dasharray: 6,4; rx: 8; ry: 8; }
+    .entity-box { fill: #E8F5E9; stroke: #2E7D32; stroke-width: 2.5; rx: 8; ry: 8; }
+    .class-header { fill: #6B46C1; stroke: #6B46C1; stroke-width: 0; }
+    .interface-header { fill: #D97706; stroke: #D97706; stroke-width: 0; }
+    .entity-header { fill: #2E7D32; stroke: #2E7D32; stroke-width: 0; }
+    .class-name { font-weight: bold; font-size: 14px; fill: #FFFFFF; font-family: Arial, sans-serif; }
+    .section-label { font-weight: bold; font-size: 10px; fill: #6B46C1; font-family: Arial, sans-serif; }
+    .member { font-size: 11px; fill: #374151; font-family: 'Courier New', monospace; }
+    .divider { stroke: #E5E7EB; stroke-width: 1.5; }
+    .pattern-label { font-weight: bold; font-size: 16px; fill: #1F2937; font-family: Arial, sans-serif; }
+    .inheritance { stroke: #1F2937; stroke-width: 2; fill: none; marker-end: url(#arrowhead-inheritance); }
+    .implements { stroke: #6B7280; stroke-width: 2; fill: none; stroke-dasharray: 4,3; marker-end: url(#arrowhead-implements); }
+    .uses { stroke: #3B82F6; stroke-width: 2; fill: none; marker-end: url(#arrowhead-uses); }
+    .contains { stroke: #10B981; stroke-width: 2; fill: none; marker-end: url(#diamond-filled); }
+    .chain { stroke: #EF4444; stroke-width: 2; fill: none; marker-end: url(#arrowhead-chain); }
+</style>
+<defs>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+        <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+        <feOffset dx="2" dy="2" result="offsetblur"/>
+        <feComponentTransfer><feFuncA type="linear" slope="0.3"/></feComponentTransfer>
+        <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <marker id="arrowhead-inheritance" markerWidth="12" markerHeight="12" refX="12" refY="4" orient="auto">
+        <polygon points="0 0, 12 4, 0 8" fill="none" stroke="#1F2937" stroke-width="1"/>
+    </marker>
+    <marker id="arrowhead-implements" markerWidth="12" markerHeight="12" refX="12" refY="4" orient="auto">
+        <polygon points="0 0, 12 4, 0 8" fill="none" stroke="#6B7280" stroke-width="1"/>
+    </marker>
+    <marker id="arrowhead-uses" markerWidth="10" markerHeight="10" refX="10" refY="3" orient="auto">
+        <polygon points="0 0, 10 3, 0 6" fill="#3B82F6"/>
+    </marker>
+    <marker id="arrowhead-chain" markerWidth="10" markerHeight="10" refX="10" refY="3" orient="auto">
+        <polygon points="0 0, 10 3, 0 6" fill="#EF4444"/>
+    </marker>
+    <marker id="diamond-filled" markerWidth="12" markerHeight="12" refX="0" refY="6" orient="auto">
+        <polygon points="6 0, 12 6, 6 12, 0 6" fill="#10B981"/>
+    </marker>
+</defs>
+
+<!-- Title -->
+<text x="1600" y="40" text-anchor="middle" font-size="24" font-weight="bold" fill="#1F2937">Bomberman Design Patterns - Connected UML Diagram</text>
+<text x="1600" y="65" text-anchor="middle" font-size="14" fill="#6B7280">Showing relationships between 11 Part 2 patterns and game entities</text>
+
+<!-- Legend -->
+<g transform="translate(50,80)">
+    <rect x="0" y="0" width="400" height="100" fill="#F9FAFB" stroke="#E5E7EB" rx="8"/>
+    <text x="15" y="20" font-size="12" font-weight="bold" fill="#1F2937">Legend:</text>
+    <line x1="15" y1="35" x2="55" y2="35" class="inheritance"/>
+    <text x="65" y="39" font-size="11" fill="#374151">Extends (inheritance)</text>
+    <line x1="15" y1="55" x2="55" y2="55" class="implements"/>
+    <text x="65" y="59" font-size="11" fill="#374151">Implements (interface)</text>
+    <line x1="200" y1="35" x2="240" y2="35" class="uses"/>
+    <text x="250" y="39" font-size="11" fill="#374151">Uses/Depends on</text>
+    <line x1="200" y1="55" x2="240" y2="55" class="chain"/>
+    <text x="250" y="59" font-size="11" fill="#374151">Chain link (next handler)</text>
+    <line x1="200" y1="75" x2="240" y2="75" class="contains"/>
+    <text x="250" y="79" font-size="11" fill="#374151">Contains (composition)</text>
+</g>
+
+<!-- ==================== GAME ENTITIES (Center) ==================== -->
+<text x="1600" y="280" text-anchor="middle" class="pattern-label" fill="#2E7D32">📦 Core Game Entities</text>
+
+<!-- GameEntity (abstract base) -->
+<g filter="url(#shadow)">
+    <rect x="1460" y="300" width="280" height="90" rx="8" ry="8" class="entity-box"/>
+    <rect x="1460" y="300" width="280" height="30" rx="8" ry="8" class="entity-header"/>
+    <text x="1600" y="320" text-anchor="middle" class="class-name">GameEntity (abstract)</text>
+    <text x="1470" y="345" class="member">X, Y, Size, IsActive</text>
+    <text x="1470" y="360" class="member">Update(), Render()</text>
+    <text x="1470" y="375" class="member">CollidesWith()</text>
+</g>
+
+<!-- Player -->
+<g filter="url(#shadow)">
+    <rect x="1200" y="420" width="180" height="70" rx="8" ry="8" class="entity-box"/>
+    <rect x="1200" y="420" width="180" height="30" rx="8" ry="8" class="entity-header"/>
+    <text x="1290" y="440" text-anchor="middle" class="class-name">Player</text>
+    <text x="1210" y="465" class="member">Speed, BombCount</text>
+    <text x="1210" y="480" class="member">Move(), PlaceBomb()</text>
+</g>
+
+<!-- Enemy -->
+<g filter="url(#shadow)">
+    <rect x="1400" y="420" width="180" height="70" rx="8" ry="8" class="entity-box"/>
+    <rect x="1400" y="420" width="180" height="30" rx="8" ry="8" class="entity-header"/>
+    <text x="1490" y="440" text-anchor="middle" class="class-name">Enemy</text>
+    <text x="1410" y="465" class="member">AIStrategy</text>
+    <text x="1410" y="480" class="member">Clone(), DeepClone()</text>
+</g>
+
+<!-- Bomb -->
+<g filter="url(#shadow)">
+    <rect x="1600" y="420" width="180" height="70" rx="8" ry="8" class="entity-box"/>
+    <rect x="1600" y="420" width="180" height="30" rx="8" ry="8" class="entity-header"/>
+    <text x="1690" y="440" text-anchor="middle" class="class-name">Bomb</text>
+    <text x="1610" y="465" class="member">Timer, Range</text>
+    <text x="1610" y="480" class="member">ShouldExplode()</text>
+</g>
+
+<!-- Tile -->
+<g filter="url(#shadow)">
+    <rect x="1800" y="420" width="180" height="70" rx="8" ry="8" class="entity-box"/>
+    <rect x="1800" y="420" width="180" height="30" rx="8" ry="8" class="entity-header"/>
+    <text x="1890" y="440" text-anchor="middle" class="class-name">Tile</text>
+    <text x="1810" y="465" class="member">TileType</text>
+    <text x="1810" y="480" class="member">IsPassable(), Break()</text>
+</g>
+
+<!-- Inheritance arrows to GameEntity -->
+<path d="M 1290 420 L 1290 395 L 1600 395 L 1600 390" class="inheritance"/>
+<path d="M 1490 420 L 1490 395 L 1600 395" class="inheritance"/>
+<path d="M 1690 420 L 1690 395 L 1600 395" class="inheritance"/>
+<path d="M 1890 420 L 1890 395 L 1600 395" class="inheritance"/>
+
+<!-- ==================== TEMPLATE METHOD PATTERN ==================== -->
+<text x="200" y="280" text-anchor="middle" class="pattern-label">📋 Template Method</text>
+
+<g filter="url(#shadow)">
+    <rect x="100" y="300" width="200" height="80" rx="8" ry="8" class="class-box"/>
+    <rect x="100" y="300" width="200" height="30" rx="8" ry="8" class="class-header"/>
+    <text x="200" y="320" text-anchor="middle" class="class-name">EntityUpdateTemplate</text>
+    <text x="110" y="345" class="member">UpdateEntity(GameEntity)</text>
+    <text x="110" y="360" class="member">PerformUpdate()</text>
+    <text x="110" y="375" class="member">ValidateEntity()</text>
+</g>
+
+<g filter="url(#shadow)">
+    <rect x="50" y="410" width="140" height="50" rx="8" ry="8" class="class-box"/>
+    <rect x="50" y="410" width="140" height="25" rx="8" ry="8" class="class-header"/>
+    <text x="120" y="428" text-anchor="middle" class="class-name" font-size="11">BombUpdateTemplate</text>
+    <text x="60" y="450" class="member" font-size="10">sealed class</text>
+</g>
+
+<g filter="url(#shadow)">
+    <rect x="200" y="410" width="140" height="50" rx="8" ry="8" class="class-box"/>
+    <rect x="200" y="410" width="140" height="25" rx="8" ry="8" class="class-header"/>
+    <text x="270" y="428" text-anchor="middle" class="class-name" font-size="11">EnemyUpdateTemplate</text>
+    <text x="210" y="450" class="member" font-size="10">sealed class</text>
+</g>
+
+<g filter="url(#shadow)">
+    <rect x="125" y="470" width="150" height="50" rx="8" ry="8" class="class-box"/>
+    <rect x="125" y="470" width="150" height="25" rx="8" ry="8" class="class-header"/>
+    <text x="200" y="488" text-anchor="middle" class="class-name" font-size="11">PlayerUpdateTemplate</text>
+    <text x="135" y="510" class="member" font-size="10">sealed class</text>
+</g>
+
+<!-- Template inheritance arrows -->
+<path d="M 120 410 L 120 390 L 200 390 L 200 380" class="inheritance"/>
+<path d="M 270 410 L 270 390 L 200 390" class="inheritance"/>
+<path d="M 200 470 L 200 462" class="inheritance"/>
+
+<!-- Template uses GameEntity arrow -->
+<path d="M 300 340 L 500 340 C 800 340, 1100 340, 1460 340" class="uses"/>
+<text x="550" y="330" font-size="10" fill="#3B82F6">uses</text>
+
+<!-- ==================== ITERATOR PATTERN ==================== -->
+<text x="200" y="570" text-anchor="middle" class="pattern-label">🔄 Iterator</text>
+
+<g filter="url(#shadow)">
+    <rect x="40" y="590" width="130" height="60" rx="8" ry="8" class="interface-box"/>
+    <rect x="40" y="590" width="130" height="25" rx="8" ry="8" class="interface-header"/>
+    <text x="105" y="608" text-anchor="middle" class="class-name" font-size="12">IIterator&lt;T&gt;</text>
+    <text x="50" y="630" class="member" font-size="10">HasNext(), Next()</text>
+    <text x="50" y="642" class="member" font-size="10">Reset()</text>
+</g>
+
+<g filter="url(#shadow)">
+    <rect x="180" y="590" width="130" height="60" rx="8" ry="8" class="interface-box"/>
+    <rect x="180" y="590" width="130" height="25" rx="8" ry="8" class="interface-header"/>
+    <text x="245" y="608" text-anchor="middle" class="class-name" font-size="12">IIterable&lt;T&gt;</text>
+    <text x="190" y="630" class="member" font-size="10">CreateIterator()</text>
+</g>
+
+<g filter="url(#shadow)">
+    <rect x="50" y="680" width="130" height="50" rx="8" ry="8" class="class-box"/>
+    <rect x="50" y="680" width="130" height="25" rx="8" ry="8" class="class-header"/>
+    <text x="115" y="698" text-anchor="middle" class="class-name" font-size="11">BombCollection</text>
+    <text x="60" y="720" class="member" font-size="10">List&lt;Bomb&gt;</text>
+</g>
+
+<g filter="url(#shadow)">
+    <rect x="190" y="680" width="130" height="50" rx="8" ry="8" class="class-box"/>
+    <rect x="190" y="680" width="130" height="25" rx="8" ry="8" class="class-header"/>
+    <text x="255" y="698" text-anchor="middle" class="class-name" font-size="11">EnemyCollection</text>
+    <text x="200" y="720" class="member" font-size="10">Dict&lt;int,Enemy&gt;</text>
+</g>
+
+<g filter="url(#shadow)">
+    <rect x="120" y="750" width="120" height="50" rx="8" ry="8" class="class-box"/>
+    <rect x="120" y="750" width="120" height="25" rx="8" ry="8" class="class-header"/>
+    <text x="180" y="768" text-anchor="middle" class="class-name" font-size="11">TileGrid</text>
+    <text x="130" y="790" class="member" font-size="10">Tile[,]</text>
+</g>
+
+<!-- Iterator implements arrows -->
+<path d="M 115 680 L 115 660 L 245 660 L 245 650" class="implements"/>
+<path d="M 255 680 L 255 660 L 245 660" class="implements"/>
+<path d="M 180 750 L 180 735 L 245 735 L 245 650" class="implements"/>
+
+<!-- Iterator contains Entity arrows -->
+<path d="M 180 705 L 400 705 C 700 705, 1200 550, 1690 490" class="contains"/>
+<text x="420" y="695" font-size="10" fill="#10B981">contains Bomb</text>
+<path d="M 320 705 L 500 680 C 800 620, 1200 520, 1490 490" class="contains"/>
+<text x="520" y="670" font-size="10" fill="#10B981">contains Enemy</text>
+<path d="M 240 775 L 500 775 C 900 750, 1500 550, 1890 490" class="contains"/>
+<text x="520" y="765" font-size="10" fill="#10B981">contains Tile</text>
+
+<!-- ==================== FLYWEIGHT PATTERN ==================== -->
+<text x="2900" y="280" text-anchor="middle" class="pattern-label">🪶 Flyweight</text>
+
+<g filter="url(#shadow)">
+    <rect x="2750" y="300" width="160" height="70" rx="8" ry="8" class="class-box"/>
+    <rect x="2750" y="300" width="160" height="25" rx="8" ry="8" class="class-header"/>
+    <text x="2830" y="318" text-anchor="middle" class="class-name" font-size="12">TileFlyweight</text>
+    <text x="2760" y="340" class="member" font-size="10">TileType, Color</text>
+    <text x="2760" y="355" class="member" font-size="10">IsPassable, IsBreakable</text>
+</g>
+
+<g filter="url(#shadow)">
+    <rect x="2920" y="300" width="170" height="70" rx="8" ry="8" class="class-box"/>
+    <rect x="2920" y="300" width="170" height="25" rx="8" ry="8" class="class-header"/>
+    <text x="3005" y="318" text-anchor="middle" class="class-name" font-size="11">TileFlyweightFactory</text>
+    <text x="2930" y="340" class="member" font-size="10">GetFlyweight(TileType)</text>
+    <text x="2930" y="355" class="member" font-size="10">static Dictionary</text>
+</g>
+
+<g filter="url(#shadow)">
+    <rect x="2830" y="400" width="140" height="60" rx="8" ry="8" class="class-box"/>
+    <rect x="2830" y="400" width="140" height="25" rx="8" ry="8" class="class-header"/>
+    <text x="2900" y="418" text-anchor="middle" class="class-name" font-size="12">TileContext</text>
+    <text x="2840" y="440" class="member" font-size="10">X, Y (extrinsic)</text>
+    <text x="2840" y="455" class="member" font-size="10">flyweight reference</text>
+</g>
+
+<!-- Flyweight connections -->
+<path d="M 2920 335 L 2910 335" class="uses"/>
+<text x="2880" y="325" font-size="10" fill="#3B82F6">creates</text>
+<path d="M 2900 400 L 2830 375" class="uses"/>
+<text x="2860" y="385" font-size="10" fill="#3B82F6">uses</text>
+
+<!-- Flyweight shares TileType with Tile -->
+<path d="M 2750 340 L 2200 390 C 2100 400, 2000 420, 1980 455" class="uses"/>
+<text x="2300" y="380" font-size="10" fill="#3B82F6">shares TileType</text>
+
+<!-- ==================== COMPOSITE PATTERN ==================== -->
+<text x="550" y="850" text-anchor="middle" class="pattern-label">🌳 Composite</text>
+
+<g filter="url(#shadow)">
+    <rect x="460" y="870" width="180" height="70" rx="8" ry="8" class="interface-box"/>
+    <rect x="460" y="870" width="180" height="25" rx="8" ry="8" class="interface-header"/>
+    <text x="550" y="888" text-anchor="middle" class="class-name" font-size="12">IGameComponent</text>
+    <text x="470" y="910" class="member" font-size="10">Render(), Update()</text>
+    <text x="470" y="925" class="member" font-size="10">Add(), Remove(), GetChild()</text>
+</g>
+
+<g filter="url(#shadow)">
+    <rect x="380" y="970" width="160" height="50" rx="8" ry="8" class="class-box"/>
+    <rect x="380" y="970" width="160" height="25" rx="8" ry="8" class="class-header"/>
+    <text x="460" y="988" text-anchor="middle" class="class-name" font-size="11">GameEntityComponent</text>
+    <text x="390" y="1010" class="member" font-size="10">Leaf (no children)</text>
+</g>
+
+<g filter="url(#shadow)">
+    <rect x="560" y="970" width="160" height="50" rx="8" ry="8" class="class-box"/>
+    <rect x="560" y="970" width="160" height="25" rx="8" ry="8" class="class-header"/>
+    <text x="640" y="988" text-anchor="middle" class="class-name" font-size="11">GameComposite</text>
+    <text x="570" y="1010" class="member" font-size="10">List&lt;IGameComponent&gt;</text>
+</g>
+
+<g filter="url(#shadow)">
+    <rect x="560" y="1040" width="160" height="50" rx="8" ry="8" class="class-box"/>
+    <rect x="560" y="1040" width="160" height="25" rx="8" ry="8" class="class-header"/>
+    <text x="640" y="1058" text-anchor="middle" class="class-name" font-size="11">SafeGameComposite</text>
+    <text x="570" y="1080" class="member" font-size="10">Lock(), Unlock()</text>
+</g>
+
+<!-- Composite implements/extends arrows -->
+<path d="M 460 970 L 460 950 L 550 950 L 550 940" class="implements"/>
+<path d="M 640 970 L 640 950 L 550 950" class="implements"/>
+<path d="M 640 1040 L 640 1025" class="inheritance"/>
+
+<!-- Composite self-reference -->
+<path d="M 720 995 C 780 995, 780 910, 640 910" class="contains" stroke-dasharray="3,3"/>
+<text x="770" y="965" font-size="10" fill="#10B981">contains</text>
+
+<!-- ==================== STATE PATTERN ==================== -->
+<text x="1100" y="850" text-anchor="middle" class="pattern-label">🔀 State</text>
+
+<g filter="url(#shadow)">
+    <rect x="1020" y="870" width="160" height="60" rx="8" ry="8" class="interface-box"/>
+    <rect x="1020" y="870" width="160" height="25" rx="8" ry="8" class="interface-header"/>
+    <text x="1100" y="888" text-anchor="middle" class="class-name" font-size="12">IGameState</text>
+    <text x="1030" y="910" class="member" font-size="10">Enter(), Update(), Exit()</text>
+    <text x="1030" y="922" class="member" font-size="10">HandleInput()</text>
+</g>
+
+<g filter="url(#shadow)">
+    <rect x="900" y="960" width="140" height="45" rx="8" ry="8" class="class-box"/>
+    <rect x="900" y="960" width="140" height="22" rx="8" ry="8" class="class-header"/>
+    <text x="970" y="975" text-anchor="middle" class="class-name" font-size="10">GameStateContext</text>
+    <text x="910" y="995" class="member" font-size="9">currentState</text>
+</g>
+
+<g filter="url(#shadow)">
+    <rect x="950" y="1030" width="80" height="35" rx="8" ry="8" class="class-box"/>
+    <rect x="950" y="1030" width="80" height="20" rx="8" ry="8" class="class-header"/>
+    <text x="990" y="1044" text-anchor="middle" class="class-name" font-size="9">MenuState</text>
+</g>
+
+<g filter="url(#shadow)">
+    <rect x="1040" y="1030" width="80" height="35" rx="8" ry="8" class="class-box"/>
+    <rect x="1040" y="1030" width="80" height="20" rx="8" ry="8" class="class-header"/>
+    <text x="1080" y="1044" text-anchor="middle" class="class-name" font-size="9">PlayingState</text>
+</g>
+
+<g filter="url(#shadow)">
+    <rect x="1130" y="1030" width="80" height="35" rx="8" ry="8" class="class-box"/>
+    <rect x="1130" y="1030" width="80" height="20" rx="8" ry="8" class="class-header"/>
+    <text x="1170" y="1044" text-anchor="middle" class="class-name" font-size="9">PausedState</text>
+</g>
+
+<g filter="url(#shadow)">
+    <rect x="1040" y="1075" width="90" height="35" rx="8" ry="8" class="class-box"/>
+    <rect x="1040" y="1075" width="90" height="20" rx="8" ry="8" class="class-header"/>
+    <text x="1085" y="1089" text-anchor="middle" class="class-name" font-size="9">GameOverState</text>
+</g>
+
+<g filter="url(#shadow)">
+    <rect x="1140" y="1075" width="80" height="35" rx="8" ry="8" class="class-box"/>
+    <rect x="1140" y="1075" width="80" height="20" rx="8" ry="8" class="class-header"/>
+    <text x="1180" y="1089" text-anchor="middle" class="class-name" font-size="9">VictoryState</text>
+</g>
+
+<!-- State implements arrows -->
+<path d="M 990 1030 L 990 1015 L 1100 1015 L 1100 930" class="implements"/>
+<path d="M 1080 1030 L 1080 1015 L 1100 1015" class="implements"/>
+<path d="M 1170 1030 L 1170 1015 L 1100 1015" class="implements"/>
+<path d="M 1085 1075 L 1085 1065 L 1100 1065" class="implements"/>
+<path d="M 1180 1075 L 1180 1065 L 1100 1065 L 1100 1015" class="implements"/>
+
+<!-- Context has state -->
+<path d="M 1040 980 L 1100 930" class="uses"/>
+<text x="1050" y="945" font-size="10" fill="#3B82F6">has</text>
+
+<!-- ==================== PROXY PATTERN ==================== -->
+<text x="1600" y="850" text-anchor="middle" class="pattern-label">🔐 Proxy</text>
+
+<g filter="url(#shadow)">
+    <rect x="1520" y="870" width="160" height="60" rx="8" ry="8" class="interface-box"/>
+    <rect x="1520" y="870" width="160" height="25" rx="8" ry="8" class="interface-header"/>
+    <text x="1600" y="888" text-anchor="middle" class="class-name" font-size="12">IGameResource</text>
+    <text x="1530" y="910" class="member" font-size="10">Load(), Unload()</text>
+    <text x="1530" y="922" class="member" font-size="10">IsLoaded()</text>
+</g>
+
+<g filter="url(#shadow)">
+    <rect x="1450" y="960" width="130" height="45" rx="8" ry="8" class="class-box"/>
+    <rect x="1450" y="960" width="130" height="22" rx="8" ry="8" class="class-header"/>
+    <text x="1515" y="975" text-anchor="middle" class="class-name" font-size="10">GameResource</text>
+    <text x="1460" y="995" class="member" font-size="9">Real Subject</text>
+</g>
+
+<g filter="url(#shadow)">
+    <rect x="1590" y="960" width="130" height="45" rx="8" ry="8" class="class-box"/>
+    <rect x="1590" y="960" width="130" height="22" rx="8" ry="8" class="class-header"/>
+    <text x="1655" y="975" text-anchor="middle" class="class-name" font-size="10">LazyLoadProxy</text>
+    <text x="1600" y="995" class="member" font-size="9">Delayed creation</text>
+</g>
+
+<g filter="url(#shadow)">
+    <rect x="1520" y="1020" width="110" height="40" rx="8" ry="8" class="class-box"/>
+    <rect x="1520" y="1020" width="110" height="20" rx="8" ry="8" class="class-header"/>
+    <text x="1575" y="1034" text-anchor="middle" class="class-name" font-size="9">SecurityProxy</text>
+    <text x="1530" y="1052" class="member" font-size="9">Access control</text>
+</g>
+
+<g filter="url(#shadow)">
+    <rect x="1640" y="1020" width="100" height="40" rx="8" ry="8" class="class-box"/>
+    <rect x="1640" y="1020" width="100" height="20" rx="8" ry="8" class="class-header"/>
+    <text x="1690" y="1034" text-anchor="middle" class="class-name" font-size="9">LoggingProxy</text>
+    <text x="1650" y="1052" class="member" font-size="9">Audit logging</text>
+</g>
+
+<!-- Proxy implements arrows -->
+<path d="M 1515 960 L 1515 945 L 1600 945 L 1600 930" class="implements"/>
+<path d="M 1655 960 L 1655 945 L 1600 945" class="implements"/>
+<path d="M 1575 1020 L 1575 1005 L 1655 1005" class="implements"/>
+<path d="M 1690 1020 L 1690 1005 L 1655 1005" class="implements"/>
+
+<!-- Proxies wrap GameResource -->
+<path d="M 1590 980 L 1580 980" class="uses"/>
+<text x="1582" y="970" font-size="9" fill="#3B82F6">wraps</text>
+<path d="M 1575 1020 L 1515 1005" class="uses"/>
+<path d="M 1640 1040 L 1580 1005 L 1515 1005" class="uses"/>
+
+<!-- ==================== CHAIN OF RESPONSIBILITY PATTERN ==================== -->
+<text x="2100" y="850" text-anchor="middle" class="pattern-label">⛓️ Chain of Responsibility</text>
+
+<g filter="url(#shadow)">
+    <rect x="2020" y="870" width="160" height="60" rx="8" ry="8" class="class-box"/>
+    <rect x="2020" y="870" width="160" height="25" rx="8" ry="8" class="class-header"/>
+    <text x="2100" y="888" text-anchor="middle" class="class-name" font-size="11">RequestHandler</text>
+    <text x="2030" y="910" class="member" font-size="10">nextHandler</text>
+    <text x="2030" y="922" class="member" font-size="10">HandleRequest()</text>
+</g>
+
+<g filter="url(#shadow)">
+    <rect x="1940" y="960" width="100" height="40" rx="8" ry="8" class="class-box"/>
+    <rect x="1940" y="960" width="100" height="20" rx="8" ry="8" class="class-header"/>
+    <text x="1990" y="974" text-anchor="middle" class="class-name" font-size="9">InputHandler</text>
+</g>
+
+<g filter="url(#shadow)">
+    <rect x="2050" y="960" width="110" height="40" rx="8" ry="8" class="class-box"/>
+    <rect x="2050" y="960" width="110" height="20" rx="8" ry="8" class="class-header"/>
+    <text x="2105" y="974" text-anchor="middle" class="class-name" font-size="9">MovementHandler</text>
+</g>
+
+<g filter="url(#shadow)">
+    <rect x="2170" y="960" width="110" height="40" rx="8" ry="8" class="class-box"/>
+    <rect x="2170" y="960" width="110" height="20" rx="8" ry="8" class="class-header"/>
+    <text x="2225" y="974" text-anchor="middle" class="class-name" font-size="9">CollisionHandler</text>
+</g>
+
+<g filter="url(#shadow)">
+    <rect x="2110" y="1020" width="100" height="40" rx="8" ry="8" class="class-box"/>
+    <rect x="2110" y="1020" width="100" height="20" rx="8" ry="8" class="class-header"/>
+    <text x="2160" y="1034" text-anchor="middle" class="class-name" font-size="9">EventHandler</text>
+</g>
+
+<!-- Chain inheritance arrows -->
+<path d="M 1990 960 L 1990 945 L 2100 945 L 2100 930" class="inheritance"/>
+<path d="M 2105 960 L 2105 945 L 2100 945" class="inheritance"/>
+<path d="M 2225 960 L 2225 945 L 2100 945" class="inheritance"/>
+<path d="M 2160 1020 L 2160 1005 L 2100 1005 L 2100 945" class="inheritance"/>
+
+<!-- Chain links (next handler) -->
+<path d="M 2040 980 L 2050 980" class="chain"/>
+<path d="M 2160 980 L 2170 980" class="chain"/>
+<path d="M 2225 1000 L 2225 1010 L 2210 1020" class="chain"/>
+<text x="2240" y="1010" font-size="9" fill="#EF4444">next</text>
+
+<!-- ==================== VISITOR PATTERN ==================== -->
+<text x="1100" y="1180" text-anchor="middle" class="pattern-label">👁️ Visitor</text>
+
+<g filter="url(#shadow)">
+    <rect x="1020" y="1200" width="160" height="70" rx="8" ry="8" class="interface-box"/>
+    <rect x="1020" y="1200" width="160" height="25" rx="8" ry="8" class="interface-header"/>
+    <text x="1100" y="1218" text-anchor="middle" class="class-name" font-size="12">IVisitor</text>
+    <text x="1030" y="1240" class="member" font-size="10">VisitPlayer(Player)</text>
+    <text x="1030" y="1252" class="member" font-size="10">VisitEnemy(Enemy)</text>
+    <text x="1030" y="1264" class="member" font-size="10">VisitBomb(), VisitTile()</text>
+</g>
+
+<g filter="url(#shadow)">
+    <rect x="940" y="1300" width="110" height="40" rx="8" ry="8" class="class-box"/>
+    <rect x="940" y="1300" width="110" height="20" rx="8" ry="8" class="class-header"/>
+    <text x="995" y="1314" text-anchor="middle" class="class-name" font-size="9">RenderVisitor</text>
+</g>
+
+<g filter="url(#shadow)">
+    <rect x="1060" y="1300" width="110" height="40" rx="8" ry="8" class="class-box"/>
+    <rect x="1060" y="1300" width="110" height="20" rx="8" ry="8" class="class-header"/>
+    <text x="1115" y="1314" text-anchor="middle" class="class-name" font-size="9">UpdateVisitor</text>
+</g>
+
+<g filter="url(#shadow)">
+    <rect x="1000" y="1355" width="120" height="40" rx="8" ry="8" class="class-box"/>
+    <rect x="1000" y="1355" width="120" height="20" rx="8" ry="8" class="class-header"/>
+    <text x="1060" y="1369" text-anchor="middle" class="class-name" font-size="9">CollisionVisitor</text>
+</g>
+
+<!-- Visitor implements arrows -->
+<path d="M 995 1300 L 995 1285 L 1100 1285 L 1100 1270" class="implements"/>
+<path d="M 1115 1300 L 1115 1285 L 1100 1285" class="implements"/>
+<path d="M 1060 1355 L 1060 1345 L 1100 1345 L 1100 1285" class="implements"/>
+
+<!-- Visitor visits entities -->
+<path d="M 1180 1235 L 1290 680 L 1290 490" class="uses" stroke-dasharray="5,3"/>
+<path d="M 1180 1245 L 1490 720 L 1490 490" class="uses" stroke-dasharray="5,3"/>
+<path d="M 1180 1255 L 1690 750 L 1690 490" class="uses" stroke-dasharray="5,3"/>
+<path d="M 1180 1265 L 1890 780 L 1890 490" class="uses" stroke-dasharray="5,3"/>
+<text x="1300" y="650" font-size="10" fill="#3B82F6">visits all entities</text>
+
+<!-- ==================== INTERPRETER PATTERN ==================== -->
+<text x="550" y="1180" text-anchor="middle" class="pattern-label">📝 Interpreter</text>
+
+<g filter="url(#shadow)">
+    <rect x="470" y="1200" width="160" height="50" rx="8" ry="8" class="interface-box"/>
+    <rect x="470" y="1200" width="160" height="25" rx="8" ry="8" class="interface-header"/>
+    <text x="550" y="1218" text-anchor="middle" class="class-name" font-size="12">IExpression</text>
+    <text x="480" y="1240" class="member" font-size="10">Interpret(GameContext)</text>
+</g>
+
+<g filter="url(#shadow)">
+    <rect x="350" y="1280" width="130" height="35" rx="8" ry="8" class="class-box"/>
+    <rect x="350" y="1280" width="130" height="18" rx="8" ry="8" class="class-header"/>
+    <text x="415" y="1293" text-anchor="middle" class="class-name" font-size="9">MoveCommandExpr</text>
+</g>
+
+<g filter="url(#shadow)">
+    <rect x="490" y="1280" width="130" height="35" rx="8" ry="8" class="class-box"/>
+    <rect x="490" y="1280" width="130" height="18" rx="8" ry="8" class="class-header"/>
+    <text x="555" y="1293" text-anchor="middle" class="class-name" font-size="9">BombCommandExpr</text>
+</g>
+
+<g filter="url(#shadow)">
+    <rect x="630" y="1280" width="130" height="35" rx="8" ry="8" class="class-box"/>
+    <rect x="630" y="1280" width="130" height="18" rx="8" ry="8" class="class-header"/>
+    <text x="695" y="1293" text-anchor="middle" class="class-name" font-size="9">PauseCommandExpr</text>
+</g>
+
+<g filter="url(#shadow)">
+    <rect x="420" y="1330" width="140" height="35" rx="8" ry="8" class="class-box"/>
+    <rect x="420" y="1330" width="140" height="18" rx="8" ry="8" class="class-header"/>
+    <text x="490" y="1343" text-anchor="middle" class="class-name" font-size="9">CommandSequenceExpr</text>
+    <text x="430" y="1358" class="member" font-size="9">IExpression[]</text>
+</g>
+
+<g filter="url(#shadow)">
+    <rect x="580" y="1330" width="120" height="35" rx="8" ry="8" class="class-box"/>
+    <rect x="580" y="1330" width="120" height="18" rx="8" ry="8" class="class-header"/>
+    <text x="640" y="1343" text-anchor="middle" class="class-name" font-size="9">CommandParser</text>
+    <text x="590" y="1358" class="member" font-size="9">Parse(string)</text>
+</g>
+
+<g filter="url(#shadow)">
+    <rect x="710" y="1200" width="130" height="45" rx="8" ry="8" class="class-box"/>
+    <rect x="710" y="1200" width="130" height="22" rx="8" ry="8" class="class-header"/>
+    <text x="775" y="1216" text-anchor="middle" class="class-name" font-size="10">GameContext</text>
+    <text x="720" y="1235" class="member" font-size="9">variables Dict</text>
+</g>
+
+<!-- Interpreter implements arrows -->
+<path d="M 415 1280 L 415 1265 L 550 1265 L 550 1250" class="implements"/>
+<path d="M 555 1280 L 555 1265 L 550 1265" class="implements"/>
+<path d="M 695 1280 L 695 1265 L 550 1265" class="implements"/>
+<path d="M 490 1330 L 490 1320 L 550 1320 L 550 1265" class="implements"/>
+
+<!-- CommandSequence contains expressions -->
+<path d="M 420 1347 L 400 1347 L 400 1265 L 470 1250" class="contains"/>
+<text x="380" y="1310" font-size="9" fill="#10B981">contains</text>
+
+<!-- Parser creates expressions -->
+<path d="M 580 1347 L 550 1347 L 550 1320" class="uses"/>
+<text x="560" y="1340" font-size="9" fill="#3B82F6">creates</text>
+
+<!-- All expressions use GameContext -->
+<path d="M 630 1225 L 710 1220" class="uses"/>
+<text x="660" y="1215" font-size="9" fill="#3B82F6">uses</text>
+
+<!-- ==================== MEDIATOR PATTERN ==================== -->
+<text x="1600" y="1180" text-anchor="middle" class="pattern-label">📡 Mediator</text>
+
+<g filter="url(#shadow)">
+    <rect x="1520" y="1200" width="160" height="50" rx="8" ry="8" class="interface-box"/>
+    <rect x="1520" y="1200" width="160" height="25" rx="8" ry="8" class="interface-header"/>
+    <text x="1600" y="1218" text-anchor="middle" class="class-name" font-size="12">IMediator</text>
+    <text x="1530" y="1240" class="member" font-size="10">Notify(sender, event)</text>
+</g>
+
+<g filter="url(#shadow)">
+    <rect x="1520" y="1270" width="160" height="50" rx="8" ry="8" class="class-box"/>
+    <rect x="1520" y="1270" width="160" height="25" rx="8" ry="8" class="class-header"/>
+    <text x="1600" y="1288" text-anchor="middle" class="class-name" font-size="11">GameMediator</text>
+    <text x="1530" y="1310" class="member" font-size="10">List&lt;IParticipant&gt;</text>
+</g>
+
+<g filter="url(#shadow)">
+    <rect x="1700" y="1200" width="140" height="50" rx="8" ry="8" class="interface-box"/>
+    <rect x="1700" y="1200" width="140" height="25" rx="8" ry="8" class="interface-header"/>
+    <text x="1770" y="1218" text-anchor="middle" class="class-name" font-size="11">IParticipant</text>
+    <text x="1710" y="1240" class="member" font-size="9">SetMediator(), Receive()</text>
+</g>
+
+<g filter="url(#shadow)">
+    <rect x="1700" y="1270" width="150" height="35" rx="8" ry="8" class="class-box"/>
+    <rect x="1700" y="1270" width="150" height="18" rx="8" ry="8" class="class-header"/>
+    <text x="1775" y="1283" text-anchor="middle" class="class-name" font-size="9">PlayerManagerParticipant</text>
+</g>
+
+<g filter="url(#shadow)">
+    <rect x="1700" y="1315" width="150" height="35" rx="8" ry="8" class="class-box"/>
+    <rect x="1700" y="1315" width="150" height="18" rx="8" ry="8" class="class-header"/>
+    <text x="1775" y="1328" text-anchor="middle" class="class-name" font-size="9">BombManagerParticipant</text>
+</g>
+
+<g filter="url(#shadow)">
+    <rect x="1700" y="1360" width="150" height="35" rx="8" ry="8" class="class-box"/>
+    <rect x="1700" y="1360" width="150" height="18" rx="8" ry="8" class="class-header"/>
+    <text x="1775" y="1373" text-anchor="middle" class="class-name" font-size="9">LevelManagerParticipant</text>
+</g>
+
+<!-- Mediator implements and connections -->
+<path d="M 1600 1270 L 1600 1250" class="implements"/>
+<path d="M 1775 1270 L 1775 1250" class="implements"/>
+<path d="M 1775 1315 L 1775 1305 L 1770 1305 L 1770 1250" class="implements"/>
+<path d="M 1775 1360 L 1775 1350 L 1770 1350 L 1770 1305" class="implements"/>
+
+<!-- Mediator coordinates participants -->
+<path d="M 1680 1295 L 1700 1287" class="uses"/>
+<text x="1690" y="1260" font-size="9" fill="#3B82F6">coordinates</text>
+
+<!-- Participants notify mediator -->
+<path d="M 1700 1340 L 1680 1310" class="uses" stroke-dasharray="3,3"/>
+
+<!-- ==================== MEMENTO PATTERN ==================== -->
+<text x="2100" y="1180" text-anchor="middle" class="pattern-label">💾 Memento</text>
+
+<g filter="url(#shadow)">
+    <rect x="1980" y="1200" width="140" height="55" rx="8" ry="8" class="class-box"/>
+    <rect x="1980" y="1200" width="140" height="25" rx="8" ry="8" class="class-header"/>
+    <text x="2050" y="1218" text-anchor="middle" class="class-name" font-size="11">GameOriginator</text>
+    <text x="1990" y="1240" class="member" font-size="9">CreateMemento()</text>
+    <text x="1990" y="1252" class="member" font-size="9">RestoreFromMemento()</text>
+</g>
+
+<g filter="url(#shadow)">
+    <rect x="2130" y="1200" width="130" height="55" rx="8" ry="8" class="class-box"/>
+    <rect x="2130" y="1200" width="130" height="25" rx="8" ry="8" class="class-header"/>
+    <text x="2195" y="1218" text-anchor="middle" class="class-name" font-size="11">GameMemento</text>
+    <text x="2140" y="1240" class="member" font-size="9">state (internal)</text>
+    <text x="2140" y="1252" class="member" font-size="9">GetTimestamp()</text>
+</g>
+
+<g filter="url(#shadow)">
+    <rect x="2050" y="1280" width="130" height="55" rx="8" ry="8" class="class-box"/>
+    <rect x="2050" y="1280" width="130" height="25" rx="8" ry="8" class="class-header"/>
+    <text x="2115" y="1298" text-anchor="middle" class="class-name" font-size="11">GameCaretaker</text>
+    <text x="2060" y="1320" class="member" font-size="9">List&lt;GameMemento&gt;</text>
+    <text x="2060" y="1332" class="member" font-size="9">Cannot access state</text>
+</g>
+
+<!-- Memento connections -->
+<path d="M 2120 1227 L 2130 1227" class="uses"/>
+<text x="2122" y="1218" font-size="9" fill="#3B82F6">creates</text>
+
+<path d="M 2115 1280 L 2195 1255" class="uses"/>
+<text x="2150" y="1265" font-size="9" fill="#3B82F6">stores</text>
+
+<path d="M 2050 1307 L 2055 1240" class="uses" stroke-dasharray="3,3"/>
+<text x="2040" y="1275" font-size="9" fill="#3B82F6">restores</text>
+
+<!-- Pattern Label Boxes -->
+<rect x="30" y="250" width="350" height="290" fill="none" stroke="#E5E7EB" stroke-width="1" rx="10" stroke-dasharray="5,5"/>
+<rect x="30" y="550" width="320" height="270" fill="none" stroke="#E5E7EB" stroke-width="1" rx="10" stroke-dasharray="5,5"/>
+<rect x="2730" y="250" width="380" height="230" fill="none" stroke="#E5E7EB" stroke-width="1" rx="10" stroke-dasharray="5,5"/>
+<rect x="360" y="830" width="400" height="290" fill="none" stroke="#E5E7EB" stroke-width="1" rx="10" stroke-dasharray="5,5"/>
+<rect x="880" y="830" width="360" height="320" fill="none" stroke="#E5E7EB" stroke-width="1" rx="10" stroke-dasharray="5,5"/>
+<rect x="1430" y="830" width="340" height="250" fill="none" stroke="#E5E7EB" stroke-width="1" rx="10" stroke-dasharray="5,5"/>
+<rect x="1920" y="830" width="380" height="250" fill="none" stroke="#E5E7EB" stroke-width="1" rx="10" stroke-dasharray="5,5"/>
+<rect x="330" y="1160" width="530" height="250" fill="none" stroke="#E5E7EB" stroke-width="1" rx="10" stroke-dasharray="5,5"/>
+<rect x="920" y="1160" width="360" height="260" fill="none" stroke="#E5E7EB" stroke-width="1" rx="10" stroke-dasharray="5,5"/>
+<rect x="1500" y="1160" width="370" height="260" fill="none" stroke="#E5E7EB" stroke-width="1" rx="10" stroke-dasharray="5,5"/>
+<rect x="1960" y="1160" width="320" height="200" fill="none" stroke="#E5E7EB" stroke-width="1" rx="10" stroke-dasharray="5,5"/>
+
+</svg>
